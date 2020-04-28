@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.DataBase;
+import com.katyshevtseva.vocabularyapp.utils.DataBase;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

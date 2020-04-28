@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.Pair;
+import com.katyshevtseva.vocabularyapp.model.Entry;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ChooseLevelsController {
-    static List<Pair> list;
+    static List<Entry> list;
     private List<CheckBox> checkBoxes = new ArrayList<>();
 
     @FXML
@@ -27,7 +27,7 @@ public class ChooseLevelsController {
     public void initialize() {
         //используем хашсет для получения упорядоченного набора существующих уровней в единственном экземпляре
         Set<Integer> existingLevels = new HashSet<>();
-        for (Pair p : list) {
+        for (Entry p : list) {
             existingLevels.add(p.getLevel());
         }
 
@@ -55,10 +55,10 @@ public class ChooseLevelsController {
         }
 
         //собираем конечный лист который предадим в лернвордс
-        List<Pair> finalList = new ArrayList<>();
-        for (Pair pair : list) {
-            if (chosenLevels.contains(pair.getLevel())) {
-                finalList.add(pair);
+        List<Entry> finalList = new ArrayList<>();
+        for (Entry entry : list) {
+            if (chosenLevels.contains(entry.getLevel())) {
+                finalList.add(entry);
             }
         }
 

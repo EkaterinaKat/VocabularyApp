@@ -1,7 +1,7 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.DataBase;
-import com.katyshevtseva.vocabularyapp.model.Pair;
+import com.katyshevtseva.vocabularyapp.utils.DataBase;
+import com.katyshevtseva.vocabularyapp.model.Entry;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -21,17 +21,17 @@ public class WordListController {
     static String nameOfList;
 
     @FXML
-    public TableView<Pair> table;
+    public TableView<Entry> table;
     @FXML
-    public TableColumn<Pair, String> wordColumn;
+    public TableColumn<Entry, String> wordColumn;
     @FXML
-    public TableColumn<Pair, String> translationColumn;
+    public TableColumn<Entry, String> translationColumn;
     @FXML
-    public TableColumn<Pair, Number> countColumn;
+    public TableColumn<Entry, Number> countColumn;
     @FXML
-    public TableColumn<Pair, Integer> levelColumn;
+    public TableColumn<Entry, Integer> levelColumn;
     @FXML
-    public TableColumn<Pair, Integer> helpColumn;
+    public TableColumn<Entry, Integer> helpColumn;
     @FXML
     public Button addWordButton;
 
@@ -48,11 +48,11 @@ public class WordListController {
 
         //назначаем слушателя двойного целчка по строчке таблицы
         table.setRowFactory(tv -> {
-            TableRow<Pair> row = new TableRow<>();
+            TableRow<Entry> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    Pair chosenPair = row.getItem();
-                    createClickOnWordWindow(chosenPair);
+                    Entry chosenEntry = row.getItem();
+                    createClickOnWordWindow(chosenEntry);
                 }
             });
             return row;
@@ -67,8 +67,8 @@ public class WordListController {
     }
 
     void updateTable() {
-        List<Pair> list = DataBase.getInstance().getListOfPairs(nameOfList);
-        ObservableList<Pair> words = FXCollections.observableArrayList();
+        List<Entry> list = DataBase.getInstance().getListOfPairs(nameOfList);
+        ObservableList<Entry> words = FXCollections.observableArrayList();
         words.addAll(list);
         table.setItems(words);
     }
@@ -79,11 +79,11 @@ public class WordListController {
                 "add_word_sample.fxml", "Add word", 350, 200, false);
     }
 
-    private void createClickOnWordWindow(Pair pair) {
-        ClickOnWordController.pair = pair;
+    private void createClickOnWordWindow(Entry entry) {
+        ClickOnWordController.entry = entry;
         ClickOnWordController.wordListController = this;
         WindowCreator.getInstance().createModalWindow(
-                "click_on_word_sample.fxml", pair.getWord(), 350, 220, false);
+                "click_on_word_sample.fxml", entry.getWord(), 350, 220, false);
     }
 
 }

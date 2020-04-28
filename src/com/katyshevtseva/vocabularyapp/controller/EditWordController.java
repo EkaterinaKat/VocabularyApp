@@ -1,7 +1,7 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.DataBase;
-import com.katyshevtseva.vocabularyapp.model.Pair;
+import com.katyshevtseva.vocabularyapp.utils.DataBase;
+import com.katyshevtseva.vocabularyapp.model.Entry;
 import com.katyshevtseva.vocabularyapp.model.Translator;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class EditWordController {
-    static Pair pair;
+    static Entry entry;
     static WordListController wordListController;
 
     @FXML
@@ -20,8 +20,8 @@ public class EditWordController {
 
     @FXML
     public void initialize() {
-        wordTF.setText(pair.getWord());
-        translationTF.setText(pair.getTranslation());
+        wordTF.setText(entry.getWord());
+        translationTF.setText(entry.getTranslation());
 
         //устанавливаем слушателей которые будут преводить текст на нужный язык
         wordTF.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -41,7 +41,7 @@ public class EditWordController {
             WindowCreator.getInstance().createModalWindow(
                     "message_sample.fxml", "Warning", 400, 200, false);
         } else {
-            DataBase.getInstance().editWord(pair, wordTF.getText(), translationTF.getText());
+            DataBase.getInstance().editWord(entry, wordTF.getText(), translationTF.getText());
             wordListController.updateTable();
             Stage stage = (Stage) wordTF.getScene().getWindow();
             stage.close();

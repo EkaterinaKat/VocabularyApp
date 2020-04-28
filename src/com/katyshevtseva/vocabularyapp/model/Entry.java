@@ -1,14 +1,13 @@
 package com.katyshevtseva.vocabularyapp.model;
 
-public class Pair {
+public class Entry {
     private String word;
     private String translation;
     private Integer level;
     private String listName;
     private String help;
 
-
-    public Pair(String word, String translation, Integer level, String listName, String help) {
+    public Entry(String word, String translation, Integer level, String listName, String help) {
         this.word = word;
         this.translation = translation;
         this.level = level;
@@ -33,12 +32,11 @@ public class Pair {
         return level;
     }
 
-    String getListName() {
+    public String getListName() {
         return listName;
     }
 
     public String getHelp() {
         return help;
     }
-
 }

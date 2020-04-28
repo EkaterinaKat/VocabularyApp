@@ -1,7 +1,7 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.DataBase;
-import com.katyshevtseva.vocabularyapp.model.Pair;
+import com.katyshevtseva.vocabularyapp.utils.DataBase;
+import com.katyshevtseva.vocabularyapp.model.Entry;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -36,10 +36,10 @@ public class ChooseListsController {
 
     public void done(MouseEvent mouseEvent) {
         //создаем и заполняем список в который входят все пары из помечкных галочками списков
-        List<Pair> listSet = new ArrayList<>();
+        List<Entry> listSet = new ArrayList<>();
         for(CheckBox cb: checkBoxes){
             if(cb.isSelected()){
-                List<Pair> list = DataBase.getInstance().getListOfPairs(cb.getText());
+                List<Entry> list = DataBase.getInstance().getListOfPairs(cb.getText());
                 listSet.addAll(list);
             }
         }

@@ -1,7 +1,7 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.DataBase;
-import com.katyshevtseva.vocabularyapp.model.Pair;
+import com.katyshevtseva.vocabularyapp.utils.DataBase;
+import com.katyshevtseva.vocabularyapp.model.Entry;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class DeleteWordController {
     static WordListController wordListController;
-    static Pair pair;
+    static Entry entry;
     @FXML
     public Label label;
     @FXML
@@ -23,7 +23,7 @@ public class DeleteWordController {
     }
 
     public void delete() {
-        DataBase.getInstance().deleteWord(pair);
+        DataBase.getInstance().deleteWord(entry);
         wordListController.updateTable();
         Stage stage = (Stage) label.getScene().getWindow();
         stage.close();

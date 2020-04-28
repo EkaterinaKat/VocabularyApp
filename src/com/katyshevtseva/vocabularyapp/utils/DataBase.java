@@ -1,4 +1,6 @@
-package com.katyshevtseva.vocabularyapp.model;
+package com.katyshevtseva.vocabularyapp.utils;
+
+import com.katyshevtseva.vocabularyapp.model.Entry;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -64,9 +66,9 @@ public class DataBase {
         return catalogue;
     }
 
-    public List<Pair> getListOfPairs(String listName) {
+    public List<Entry> getListOfPairs(String listName) {
         String tableName = getTableNameByListName(listName);
-        List<Pair> listOfPairs = new ArrayList<>();
+        List<Entry> listOfEntries = new ArrayList<>();
         String sql2 = String.format("SELECT word, translation, level, help FROM %s", tableName);
         ResultSet rs;
         try {
@@ -76,12 +78,12 @@ public class DataBase {
                 String t = rs.getString(2);
                 Integer l = rs.getInt(3);
                 String h = rs.getString(4);
-                listOfPairs.add(new Pair(n, t, l, listName, h));
+                listOfEntries.add(new Entry(n, t, l, listName, h));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listOfPairs;
+        return listOfEntries;
     }
 
     public void addWord(String listName, String word, String translation) {
@@ -156,12 +158,12 @@ public class DataBase {
         }
     }
 
-    public void changeLevel(Pair pair, int newLevel) {
-        String tableName = getTableNameByListName(pair.getListName());
+    public void changeLevel(Entry entry, int newLevel) {
+        String tableName = getTableNameByListName(entry.getListName());
         String sql = String.format("UPDATE %s \n" +
                 "\t   SET level = \"%d\" \n" +
                 "\t   WHERE word = " +
-                "\"%s\" ", tableName, newLevel, pair.getWord());
+                "\"%s\" ", tableName, newLevel, entry.getWord());
         try {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
@@ -169,8 +171,8 @@ public class DataBase {
         }
     }
 
-    public List<Pair> getPairsForSearch(String inputString) {
-        List<Pair> resultList = new ArrayList<>();
+    public List<Entry> getPairsForSearch(String inputString) {
+        List<Entry> resultList = new ArrayList<>();
 
         //достаем из каталога имена списков
         List<String> listNames = null;
@@ -192,7 +194,7 @@ public class DataBase {
                         String translation = rs.getString(2);
                         Integer level = rs.getInt(3);
                         String help = rs.getString(4);
-                        resultList.add(new Pair(word, translation, level, listName, help));
+                        resultList.add(new Entry(word, translation, level, listName, help));
                     }
                 }
             } catch (SQLException e) {
@@ -202,11 +204,11 @@ public class DataBase {
         return resultList;
     }
 
-    public void editWord(Pair pair, String newWord, String newTranslation) {
-        String tableName = getTableNameByListName(pair.getListName());
+    public void editWord(Entry entry, String newWord, String newTranslation) {
+        String tableName = getTableNameByListName(entry.getListName());
         String sql = String.format("UPDATE %s \n" +
                 "\t   SET word = \"%s\", translation = \"%s\" \n" +
-                "\t   WHERE word = \"%s\"", tableName, newWord, newTranslation, pair.getWord());
+                "\t   WHERE word = \"%s\"", tableName, newWord, newTranslation, entry.getWord());
         try {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
@@ -214,10 +216,10 @@ public class DataBase {
         }
     }
 
-    public void deleteWord(Pair pair) {
-        String tableName = getTableNameByListName(pair.getListName());
+    public void deleteWord(Entry entry) {
+        String tableName = getTableNameByListName(entry.getListName());
         String sql = String.format("DELETE FROM %s WHERE word=\"%s\" AND translation = \"%s\" " +
-                "AND level = \"%d\"", tableName, pair.getWord(), pair.getTranslation(), pair.getLevel());
+                "AND level = \"%d\"", tableName, entry.getWord(), entry.getTranslation(), entry.getLevel());
         try {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
@@ -225,11 +227,11 @@ public class DataBase {
         }
     }
 
-    public void addHelp(Pair pair, String newHelp) {
-        String tableName = getTableNameByListName(pair.getListName());
+    public void addHelp(Entry entry, String newHelp) {
+        String tableName = getTableNameByListName(entry.getListName());
         String sql = String.format("UPDATE %s \n" +
                 "\t   SET help = \"%s\" \n" +
-                "\t   WHERE word = \"%s\"", tableName, newHelp, pair.getWord());
+                "\t   WHERE word = \"%s\"", tableName, newHelp, entry.getWord());
         try {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {

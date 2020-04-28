@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.DataBase;
+import com.katyshevtseva.vocabularyapp.utils.DataBase;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.application.Application;
 import javafx.fxml.FXML;

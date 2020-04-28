@@ -1,18 +1,18 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.Pair;
+import com.katyshevtseva.vocabularyapp.model.Entry;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class ClickOnWordController {
     static WordListController wordListController;
-    static Pair pair;
+    static Entry entry;
     public Button btn;
 
     public void editWord() {
         EditWordController.wordListController = wordListController;
-        EditWordController.pair = pair;
+        EditWordController.entry = entry;
         WindowCreator.getInstance().createModalWindow(
                 "edit_word_sample.fxml", "Edit word", 350, 200, false);
         Stage stage = (Stage) btn.getScene().getWindow();
@@ -21,7 +21,7 @@ public class ClickOnWordController {
 
     public void deleteWord() {
         DeleteWordController.wordListController = wordListController;
-        DeleteWordController.pair = pair;
+        DeleteWordController.entry = entry;
         WindowCreator.getInstance().createModalWindow(
                 "delete_word_sample.fxml", "Delete word", 450, 200, false);
         Stage stage = (Stage) btn.getScene().getWindow();
@@ -30,7 +30,7 @@ public class ClickOnWordController {
 
     public void addHelp() {
         AddHelpController.wordListController = wordListController;
-        AddHelpController.pair = pair;
+        AddHelpController.entry = entry;
         WindowCreator.getInstance().createModalWindow(
                 "add_help_sample.fxml", "Add help", 350, 200, false);
         Stage stage = (Stage) btn.getScene().getWindow();

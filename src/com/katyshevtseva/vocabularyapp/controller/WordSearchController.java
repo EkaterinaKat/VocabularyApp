@@ -1,7 +1,7 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.DataBase;
-import com.katyshevtseva.vocabularyapp.model.Pair;
+import com.katyshevtseva.vocabularyapp.utils.DataBase;
+import com.katyshevtseva.vocabularyapp.model.Entry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,15 +16,15 @@ public class WordSearchController {
     @FXML
     public TextField tf;
     @FXML
-    public TableView<Pair> table;
+    public TableView<Entry> table;
     @FXML
-    public TableColumn<Pair, String> wordColumn;
+    public TableColumn<Entry, String> wordColumn;
     @FXML
-    public TableColumn<Pair, String> translationColumn;
+    public TableColumn<Entry, String> translationColumn;
     @FXML
-    public TableColumn<Pair, Integer> levelColumn;
+    public TableColumn<Entry, Integer> levelColumn;
     @FXML
-    public TableColumn<Pair, String> listNameColumn;
+    public TableColumn<Entry, String> listNameColumn;
 
 
     @FXML
@@ -33,8 +33,8 @@ public class WordSearchController {
     }
 
     private void fillTable(String inputString) {
-        List<Pair> list = DataBase.getInstance().getPairsForSearch(inputString);
-        ObservableList<Pair> observableList = FXCollections.observableArrayList();
+        List<Entry> list = DataBase.getInstance().getPairsForSearch(inputString);
+        ObservableList<Entry> observableList = FXCollections.observableArrayList();
         observableList.addAll(list);
 
         wordColumn.setCellValueFactory(new PropertyValueFactory<>("word"));
