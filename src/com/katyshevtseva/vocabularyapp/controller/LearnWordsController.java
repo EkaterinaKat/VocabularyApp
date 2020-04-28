@@ -90,8 +90,8 @@ public class LearnWordsController {
         if(count==list.size()){
             MessageController.warningIconNeeded = false;
             MessageController.message = "Learning is completed!";
-            WindowCreator windowCreator = new WindowCreator();
-            windowCreator.createWindow("message_sample.fxml", "Message", 350, 200, false);
+            WindowCreator.getInstance().createWindow(
+                    "message_sample.fxml", "Message", 350, 200, false);
             Stage stage = (Stage) wordLabel.getScene().getWindow();
             stage.close();
         }else {

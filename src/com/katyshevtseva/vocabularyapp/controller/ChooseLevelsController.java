@@ -65,8 +65,8 @@ public class ChooseLevelsController {
 
         //передаем конечный лист в лернвордс контроллер и запускаем окно для изучения слов
         LearnWordsController.list = finalList;
-        WindowCreator windowCreator = new WindowCreator();
-        windowCreator.createWindow("learn_words_sample.fxml", "Learn words", 550, 500, false);
+        WindowCreator.getInstance().createWindow(
+                "learn_words_sample.fxml", "Learn words", 550, 500, false);
 
         //закрываем окно выбора уровней
         Stage stage = (Stage) scrollPane.getScene().getWindow();

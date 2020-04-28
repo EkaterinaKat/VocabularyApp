@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseListsController {
-    WindowCreator windowCreator = new WindowCreator();
     static List<String> catalogue;
     List<CheckBox> checkBoxes = new ArrayList<>();
 
@@ -48,13 +47,15 @@ public class ChooseListsController {
         //проверяем не пустой ли у нас получился список
         if(listSet.size()==0){
             MessageController.message = "Chosen lists are empty";
-            windowCreator.createWindow("message_sample.fxml", "Warning", 350, 200, false);
+            WindowCreator.getInstance().createWindow(
+                    "message_sample.fxml", "Warning", 350, 200, false);
         }else{
             //передаем этот список в чузлевелконтроллер
             ChooseLevelsController.list = listSet;
 
             //создаем окно для выбора уровней
-            windowCreator.createWindow("choose_levels_sample.fxml", "Choose levels", 400, 450, false);
+            WindowCreator.getInstance().createWindow(
+                    "choose_levels_sample.fxml", "Choose levels", 400, 450, false);
 
             //закрываем окно выбора списков
             Stage stage = (Stage) scrollPane.getScene().getWindow();

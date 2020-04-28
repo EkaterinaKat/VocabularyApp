@@ -17,7 +17,6 @@ import java.util.List;
 
 public class WordListController {
     static String nameOfList;
-    WindowCreator windowCreator = new WindowCreator();
 
     @FXML
     public TableView<Pair> table;
@@ -75,13 +74,15 @@ public class WordListController {
 
     public void pressAddWordButton(MouseEvent mouseEvent) {
         AddWordController.wordListController = this;
-        windowCreator.createWindow("add_word_sample.fxml", "Add word", 350, 200, false);
+        WindowCreator.getInstance().createWindow(
+                "add_word_sample.fxml", "Add word", 350, 200, false);
     }
 
     void createClickOnWordWindow(Pair pair){
         ClickOnWordController.pair = pair;
         ClickOnWordController.wordListController = this;
-        windowCreator.createWindow("click_on_word_sample.fxml",pair.getWord(), 350,220, false);
+        WindowCreator.getInstance().createWindow(
+                "click_on_word_sample.fxml",pair.getWord(), 350,220, false);
     }
 
 }

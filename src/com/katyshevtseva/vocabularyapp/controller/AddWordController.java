@@ -57,8 +57,8 @@ public class AddWordController {
             wordTF.requestFocus();
         } else {
             MessageController.message = "Both fields must be filled in";
-            WindowCreator windowCreator = new WindowCreator();
-            windowCreator.createWindow("message_sample.fxml", "Warning", 400, 200, false);
+            WindowCreator.getInstance().createWindow(
+                    "message_sample.fxml", "Warning", 400, 200, false);
         }
     }
 

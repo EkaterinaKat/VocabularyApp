@@ -24,8 +24,8 @@ public class AddListController {
             stage.close();
         } else {
             MessageController.message = "Text field is empty";
-            WindowCreator windowCreator = new WindowCreator();
-            windowCreator.createWindow("message_sample.fxml", "Warning", 350, 200, false);
+            WindowCreator.getInstance().createWindow(
+                    "message_sample.fxml", "Warning", 350, 200, false);
         }
     }
 

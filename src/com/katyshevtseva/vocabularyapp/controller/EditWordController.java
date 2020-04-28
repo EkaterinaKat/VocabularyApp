@@ -49,8 +49,8 @@ public class EditWordController{
     public void done(MouseEvent mouseEvent) {
         if((wordTF.getText().equals(""))||(translationTF.getText().equals(""))){
             MessageController.message = "Both fields must be filled in";
-            WindowCreator windowCreator = new WindowCreator();
-            windowCreator.createWindow("message_sample.fxml", "Warning", 400, 200, false);
+            WindowCreator.getInstance().createWindow(
+                    "message_sample.fxml", "Warning", 400, 200, false);
         }else {
             ConnectionWithDB.editWord(pair, wordTF.getText(), translationTF.getText());
             wordListController.updateTable();

@@ -8,10 +8,22 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class WindowCreator {
     private final String SAMPLES_PATH = "/com/katyshevtseva/vocabularyapp/view/";
+    private static WindowCreator instance;
+
+    public static WindowCreator getInstance(){
+        if (instance==null){
+            instance = new WindowCreator();
+        }
+        return instance;
+    }
+
+    private WindowCreator() {
+    }
 
     public void createWindow(String sampleName, String title, int width, int height, boolean strechable) {
         try {

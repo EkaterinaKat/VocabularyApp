@@ -22,7 +22,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class Main extends Application {
-    static WindowCreator windowCreator = new WindowCreator();
     static List<String> catalogue;
 
     @FXML
@@ -98,12 +97,14 @@ public class Main extends Application {
             deleteBtn.setTooltip(new Tooltip("delete list"));
             label.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
                 WordListController.nameOfList = listName;
-                windowCreator.createWindow("word_list_sample.fxml", listName, 1330, 900, true);
+                WindowCreator.getInstance().createWindow(
+                        "word_list_sample.fxml", listName, 1330, 900, true);
             });
             deleteBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
                 RemoveListController.main = this;
                 RemoveListController.listName = listName;
-                windowCreator.createWindow("remove_list_sample.fxml", "Delete word list", 450, 200, false);
+                WindowCreator.getInstance().createWindow(
+                        "remove_list_sample.fxml", "Delete word list", 450, 200, false);
             });
 
             gridPane.add(label, 0, rowIndex);
@@ -115,19 +116,23 @@ public class Main extends Application {
 
     public void addWordList(MouseEvent mouseEvent) {
         AddListController.main = this;
-        windowCreator.createWindow("add_list_sample.fxml", "Add list", 410, 150, false);
+        WindowCreator.getInstance().createWindow(
+                "add_list_sample.fxml", "Add list", 410, 150, false);
     }
 
     public void learnWords(MouseEvent mouseEvent) {
         ChooseListsController.catalogue = catalogue;
-        windowCreator.createWindow("choose_lists_sample.fxml", "Choose lists to learn", 450, 450, false);
+        WindowCreator.getInstance().createWindow(
+                "choose_lists_sample.fxml", "Choose lists to learn", 450, 450, false);
     }
 
     public void searchWord(MouseEvent mouseEvent) {
-        windowCreator.createWindow("word_search_sample.fxml", "Word Search", 820, 500, true);
+        WindowCreator.getInstance().createWindow(
+                "word_search_sample.fxml", "Word Search", 820, 500, true);
     }
 
     public void about(MouseEvent mouseEvent) {
-        windowCreator.createWindow("about_sample.fxml", "About", 570, 300, false);
+        WindowCreator.getInstance().createWindow(
+                "about_sample.fxml", "About", 570, 300, false);
     }
 }

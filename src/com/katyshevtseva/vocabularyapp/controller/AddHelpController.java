@@ -23,8 +23,8 @@ public class AddHelpController {
     public void add(MouseEvent mouseEvent) {
         if((ta.getText()==null)||(ta.getText().trim().equals(""))){
             MessageController.message = "Text field is empty";
-            WindowCreator windowCreator = new WindowCreator();
-            windowCreator.createWindow("message_sample.fxml", "Warning", 350, 200, false);
+            WindowCreator.getInstance().createWindow(
+                    "message_sample.fxml", "Warning", 350, 200, false);
         }else{
             ConnectionWithDB.addHelp(pair, ta.getText());
             wordListController.updateTable();
