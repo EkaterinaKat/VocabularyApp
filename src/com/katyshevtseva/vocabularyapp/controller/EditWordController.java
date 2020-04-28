@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Pair;
 import com.katyshevtseva.vocabularyapp.model.Translator;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
@@ -52,7 +52,7 @@ public class EditWordController{
             WindowCreator.getInstance().createModalWindow(
                     "message_sample.fxml", "Warning", 400, 200, false);
         }else {
-            ConnectionWithDB.editWord(pair, wordTF.getText(), translationTF.getText());
+            DataBase.getInstance().editWord(pair, wordTF.getText(), translationTF.getText());
             wordListController.updateTable();
             Stage stage = (Stage) wordTF.getScene().getWindow();
             stage.close();

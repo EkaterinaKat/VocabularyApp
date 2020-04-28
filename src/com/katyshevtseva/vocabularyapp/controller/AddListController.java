@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ public class AddListController {
     public void ok() {
 
         if (!nameField.getText().trim().equals("")) {
-            ConnectionWithDB.addList(nameField.getText());
+            DataBase.getInstance().addList(nameField.getText());
             mainController.updateInterface();
             nameField.clear();
             Stage stage = (Stage) nameField.getScene().getWindow();

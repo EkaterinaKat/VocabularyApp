@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Pair;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
@@ -26,7 +26,7 @@ public class AddHelpController {
             WindowCreator.getInstance().createModalWindow(
                     "message_sample.fxml", "Warning", 350, 200, false);
         }else{
-            ConnectionWithDB.addHelp(pair, ta.getText());
+            DataBase.getInstance().addHelp(pair, ta.getText());
             wordListController.updateTable();
             Stage stage = (Stage) ta.getScene().getWindow();
             stage.close();

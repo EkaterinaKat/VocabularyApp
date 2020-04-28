@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -26,8 +26,7 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        ConnectionWithDB.connect();
-        ConnectionWithDB.mainController = this;
+        DataBase.getInstance().connect();
         WindowCreator.getInstance().createMainWindow();
     }
 
@@ -43,22 +42,22 @@ public class MainController extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        ConnectionWithDB.disconnect();
+        DataBase.getInstance().disconnect();
     }
 
     void updateInterface() {
         //получаем каталог и обрабатываем ситуацию если вдруг каталога не существует
         try {
-            catalogue = ConnectionWithDB.getCatalogue();
+            catalogue = DataBase.getInstance().getCatalogue();
         } catch (SQLException e) {
             System.out.println("Вот беда, каталога нет, но без паники, сейчас мы его сделаем");
-            ConnectionWithDB.createCatalogue();
-            ConnectionWithDB.addList("First word list");
-            ConnectionWithDB.addWord("First word list", "cat", "кот");
-            ConnectionWithDB.addWord("First word list", "dog", "пес");
-            ConnectionWithDB.addWord("First word list", "bird", "птица");
+            DataBase.getInstance().createCatalogue();
+            DataBase.getInstance().addList("First word list");
+            DataBase.getInstance().addWord("First word list", "cat", "кот");
+            DataBase.getInstance().addWord("First word list", "dog", "пес");
+            DataBase.getInstance().addWord("First word list", "bird", "птица");
             try {
-                catalogue = ConnectionWithDB.getCatalogue();
+                catalogue = DataBase.getInstance().getCatalogue();
             } catch (SQLException ex) {
                 System.out.println("блин, ну вот не создался каталог. на этом мои полнмочия все");
             }

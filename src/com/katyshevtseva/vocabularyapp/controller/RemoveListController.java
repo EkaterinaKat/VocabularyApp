@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -23,7 +23,7 @@ public class RemoveListController {
     }
 
     public void delete(MouseEvent mouseEvent) {
-        ConnectionWithDB.removeList(listName);
+        DataBase.getInstance().removeList(listName);
         mainController.updateInterface();
         Stage stage = (Stage) label.getScene().getWindow();
         stage.close();

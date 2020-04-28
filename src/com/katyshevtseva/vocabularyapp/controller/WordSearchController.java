@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Pair;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -40,7 +40,7 @@ public class WordSearchController {
     }
 
     private void fillTable(String inputString){
-        List<Pair> list = ConnectionWithDB.getPairsForSearch(inputString);
+        List<Pair> list = DataBase.getInstance().getPairsForSearch(inputString);
         ObservableList<Pair> observableList = FXCollections.observableArrayList();
         observableList.addAll(list);
 

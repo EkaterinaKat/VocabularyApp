@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Pair;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -24,7 +24,7 @@ public class DeleteWordController{
     }
 
     public void delete(MouseEvent mouseEvent) {
-        ConnectionWithDB.deleteWord(pair);
+        DataBase.getInstance().deleteWord(pair);
         wordListController.updateTable();
         Stage stage = (Stage) label.getScene().getWindow();
         stage.close();

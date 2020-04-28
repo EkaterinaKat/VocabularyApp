@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Pair;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
@@ -71,14 +71,14 @@ public class LearnWordsController {
 
     public void okBtnPressed(MouseEvent mouseEvent) {
         int l = list.get(count).getLevel();
-        ConnectionWithDB.changeLevel(list.get(count), l+1);
+        DataBase.getInstance().changeLevel(list.get(count), l+1);
         nextWord();
     }
 
     public void notOkBtnPressed(MouseEvent mouseEvent) {
         int l = list.get(count).getLevel();
         if (l!=0){
-            ConnectionWithDB.changeLevel(list.get(count), l-1);
+            DataBase.getInstance().changeLevel(list.get(count), l-1);
         }
         nextWord();
     }

@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Pair;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
@@ -39,7 +39,7 @@ public class ChooseListsController {
         List<Pair> listSet = new ArrayList<>();
         for(CheckBox cb: checkBoxes){
             if(cb.isSelected()){
-                List<Pair> list = ConnectionWithDB.getListOfPairs(cb.getText());
+                List<Pair> list = DataBase.getInstance().getListOfPairs(cb.getText());
                 listSet.addAll(list);
             }
         }

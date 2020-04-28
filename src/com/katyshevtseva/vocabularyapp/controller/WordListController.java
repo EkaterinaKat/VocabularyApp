@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Pair;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -65,7 +65,7 @@ public class WordListController {
     }
 
     void updateTable(){
-        List<Pair> list = ConnectionWithDB.getListOfPairs(nameOfList);
+        List<Pair> list = DataBase.getInstance().getListOfPairs(nameOfList);
         ObservableList<Pair> words = FXCollections.observableArrayList();
         System.out.println(list);
         words.addAll(list);

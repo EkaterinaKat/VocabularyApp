@@ -10,8 +10,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.katyshevtseva.vocabularyapp.utils.Constants.*;
+
 public class WindowCreator {
-    private final String SAMPLES_PATH = "/com/katyshevtseva/vocabularyapp/view/";
     private static WindowCreator instance;
 
     public static WindowCreator getInstance() {
@@ -31,7 +32,7 @@ public class WindowCreator {
     }
 
     public void createMainWindow() {
-        Stage stage = getStage("main_sample.fxml", "Vocabulary", 550, 500, false);
+        Stage stage = getStage(MAIN_SAMPLE_NAME, MAIN_WINDOW_TITLE, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT, false);
         stage.show();
     }
 
@@ -45,7 +46,8 @@ public class WindowCreator {
             stage.setMaxWidth(width);
         }
         stage.setScene(new Scene(getParent(sampleName), width, height));
-        stage.getIcons().add(new Image("/res/logo.png"));
+        String logoURL = IMAGES_PATH + LOGO_IMAGE_NAME;
+        stage.getIcons().add(new Image(logoURL));
         setClosingWithEscape(stage);
         return stage;
     }

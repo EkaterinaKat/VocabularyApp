@@ -1,6 +1,6 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
+import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Translator;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.beans.value.ChangeListener;
@@ -50,7 +50,7 @@ public class AddWordController {
 
     private void addWord() {
         if (!wordTF.getText().trim().equals("") && !translationTF.getText().trim().equals("")) {
-            ConnectionWithDB.addWord(WordListController.nameOfList, wordTF.getText(), translationTF.getText());
+            DataBase.getInstance().addWord(WordListController.nameOfList, wordTF.getText(), translationTF.getText());
             wordTF.clear();
             translationTF.clear();
             wordListController.updateTable();
