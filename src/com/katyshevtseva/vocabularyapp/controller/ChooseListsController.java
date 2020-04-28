@@ -2,7 +2,7 @@ package com.katyshevtseva.vocabularyapp.controller;
 
 import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
 import com.katyshevtseva.vocabularyapp.model.Pair;
-import com.katyshevtseva.vocabularyapp.model.WindowCreator;
+import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
@@ -47,14 +47,14 @@ public class ChooseListsController {
         //проверяем не пустой ли у нас получился список
         if(listSet.size()==0){
             MessageController.message = "Chosen lists are empty";
-            WindowCreator.getInstance().createWindow(
+            WindowCreator.getInstance().createModalWindow(
                     "message_sample.fxml", "Warning", 350, 200, false);
         }else{
             //передаем этот список в чузлевелконтроллер
             ChooseLevelsController.list = listSet;
 
             //создаем окно для выбора уровней
-            WindowCreator.getInstance().createWindow(
+            WindowCreator.getInstance().createModalWindow(
                     "choose_levels_sample.fxml", "Choose levels", 400, 450, false);
 
             //закрываем окно выбора списков

@@ -2,7 +2,7 @@ package com.katyshevtseva.vocabularyapp.controller;
 
 import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
 import com.katyshevtseva.vocabularyapp.model.Pair;
-import com.katyshevtseva.vocabularyapp.model.WindowCreator;
+import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -90,7 +90,7 @@ public class LearnWordsController {
         if(count==list.size()){
             MessageController.warningIconNeeded = false;
             MessageController.message = "Learning is completed!";
-            WindowCreator.getInstance().createWindow(
+            WindowCreator.getInstance().createModalWindow(
                     "message_sample.fxml", "Message", 350, 200, false);
             Stage stage = (Stage) wordLabel.getScene().getWindow();
             stage.close();

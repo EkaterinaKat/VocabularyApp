@@ -2,7 +2,7 @@ package com.katyshevtseva.vocabularyapp.controller;
 
 import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
 import com.katyshevtseva.vocabularyapp.model.Pair;
-import com.katyshevtseva.vocabularyapp.model.WindowCreator;
+import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,14 +74,14 @@ public class WordListController {
 
     public void pressAddWordButton(MouseEvent mouseEvent) {
         AddWordController.wordListController = this;
-        WindowCreator.getInstance().createWindow(
+        WindowCreator.getInstance().createModalWindow(
                 "add_word_sample.fxml", "Add word", 350, 200, false);
     }
 
     void createClickOnWordWindow(Pair pair){
         ClickOnWordController.pair = pair;
         ClickOnWordController.wordListController = this;
-        WindowCreator.getInstance().createWindow(
+        WindowCreator.getInstance().createModalWindow(
                 "click_on_word_sample.fxml",pair.getWord(), 350,220, false);
     }
 

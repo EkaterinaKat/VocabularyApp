@@ -1,7 +1,7 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
 import com.katyshevtseva.vocabularyapp.model.Pair;
-import com.katyshevtseva.vocabularyapp.model.WindowCreator;
+import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -65,7 +65,7 @@ public class ChooseLevelsController {
 
         //передаем конечный лист в лернвордс контроллер и запускаем окно для изучения слов
         LearnWordsController.list = finalList;
-        WindowCreator.getInstance().createWindow(
+        WindowCreator.getInstance().createModalWindow(
                 "learn_words_sample.fxml", "Learn words", 550, 500, false);
 
         //закрываем окно выбора уровней

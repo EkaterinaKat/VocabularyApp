@@ -1,12 +1,9 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
 import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
-import com.katyshevtseva.vocabularyapp.model.WindowCreator;
+import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -21,7 +18,7 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Main extends Application {
+public class MainController extends Application {
     static List<String> catalogue;
 
     @FXML
@@ -29,16 +26,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //подсоединяемся к базе данных
         ConnectionWithDB.connect();
-        ConnectionWithDB.main = this;
-
-        //запускаем главнео окно
-        primaryStage.getIcons().add(new Image("/res/logo.png"));
-        Parent parent = FXMLLoader.load(getClass().getResource("/com/katyshevtseva/vocabularyapp/view/main_sample.fxml"));
-        primaryStage.setTitle("Vocabulary");
-        primaryStage.setScene(new Scene(parent, 550, 500));
-        primaryStage.show();
+        ConnectionWithDB.mainController = this;
+        WindowCreator.getInstance().createMainWindow();
     }
 
     public static void main(String[] args) {
@@ -86,24 +76,24 @@ public class Main extends Application {
         //заполняем гридпэйн
         for (String listName : catalogue) {
             //подготавливаем имиджвью с крестиком для кнопки удаления
-            Image image = new Image ("/res/red_cross.png");
+            Image image = new Image("/res/red_cross.png");
             ImageView imageViewWithRedCross = new ImageView(image);
             imageViewWithRedCross.setFitHeight(15);
             imageViewWithRedCross.setFitWidth(15);
 
             //создаем, инициализируем и добавляем на экран лэйбл и кнопку удаления для каждого листа
             Label label = new Label(listName);
-            Button deleteBtn = new Button("",imageViewWithRedCross);
+            Button deleteBtn = new Button("", imageViewWithRedCross);
             deleteBtn.setTooltip(new Tooltip("delete list"));
             label.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
                 WordListController.nameOfList = listName;
-                WindowCreator.getInstance().createWindow(
+                WindowCreator.getInstance().createModalWindow(
                         "word_list_sample.fxml", listName, 1330, 900, true);
             });
             deleteBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-                RemoveListController.main = this;
+                RemoveListController.mainController = this;
                 RemoveListController.listName = listName;
-                WindowCreator.getInstance().createWindow(
+                WindowCreator.getInstance().createModalWindow(
                         "remove_list_sample.fxml", "Delete word list", 450, 200, false);
             });
 
@@ -115,24 +105,24 @@ public class Main extends Application {
     }
 
     public void addWordList(MouseEvent mouseEvent) {
-        AddListController.main = this;
-        WindowCreator.getInstance().createWindow(
+        AddListController.mainController = this;
+        WindowCreator.getInstance().createModalWindow(
                 "add_list_sample.fxml", "Add list", 410, 150, false);
     }
 
     public void learnWords(MouseEvent mouseEvent) {
         ChooseListsController.catalogue = catalogue;
-        WindowCreator.getInstance().createWindow(
+        WindowCreator.getInstance().createModalWindow(
                 "choose_lists_sample.fxml", "Choose lists to learn", 450, 450, false);
     }
 
     public void searchWord(MouseEvent mouseEvent) {
-        WindowCreator.getInstance().createWindow(
+        WindowCreator.getInstance().createModalWindow(
                 "word_search_sample.fxml", "Word Search", 820, 500, true);
     }
 
     public void about(MouseEvent mouseEvent) {
-        WindowCreator.getInstance().createWindow(
+        WindowCreator.getInstance().createModalWindow(
                 "about_sample.fxml", "About", 570, 300, false);
     }
 }

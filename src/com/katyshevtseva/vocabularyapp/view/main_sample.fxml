@@ -10,7 +10,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.katyshevtseva.vocabularyapp.controller.Main">
+            fx:controller="com.katyshevtseva.vocabularyapp.controller.MainController">
 
     <stylesheets>
         <URL value="@/css/main_style.css"/>

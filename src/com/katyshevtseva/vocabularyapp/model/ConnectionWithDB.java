@@ -1,13 +1,13 @@
 package com.katyshevtseva.vocabularyapp.model;
 
-import com.katyshevtseva.vocabularyapp.controller.Main;
+import com.katyshevtseva.vocabularyapp.controller.MainController;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionWithDB {
-    public static Main main;
+    public static MainController mainController;
     private static Connection connection;
     private static Statement stmt;
 

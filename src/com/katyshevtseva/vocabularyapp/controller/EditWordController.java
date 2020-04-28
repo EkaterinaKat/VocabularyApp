@@ -3,7 +3,7 @@ package com.katyshevtseva.vocabularyapp.controller;
 import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
 import com.katyshevtseva.vocabularyapp.model.Pair;
 import com.katyshevtseva.vocabularyapp.model.Translator;
-import com.katyshevtseva.vocabularyapp.model.WindowCreator;
+import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -49,7 +49,7 @@ public class EditWordController{
     public void done(MouseEvent mouseEvent) {
         if((wordTF.getText().equals(""))||(translationTF.getText().equals(""))){
             MessageController.message = "Both fields must be filled in";
-            WindowCreator.getInstance().createWindow(
+            WindowCreator.getInstance().createModalWindow(
                     "message_sample.fxml", "Warning", 400, 200, false);
         }else {
             ConnectionWithDB.editWord(pair, wordTF.getText(), translationTF.getText());

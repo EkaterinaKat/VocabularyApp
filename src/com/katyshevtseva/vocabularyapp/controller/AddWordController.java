@@ -2,7 +2,7 @@ package com.katyshevtseva.vocabularyapp.controller;
 
 import com.katyshevtseva.vocabularyapp.model.ConnectionWithDB;
 import com.katyshevtseva.vocabularyapp.model.Translator;
-import com.katyshevtseva.vocabularyapp.model.WindowCreator;
+import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -57,7 +57,7 @@ public class AddWordController {
             wordTF.requestFocus();
         } else {
             MessageController.message = "Both fields must be filled in";
-            WindowCreator.getInstance().createWindow(
+            WindowCreator.getInstance().createModalWindow(
                     "message_sample.fxml", "Warning", 400, 200, false);
         }
     }

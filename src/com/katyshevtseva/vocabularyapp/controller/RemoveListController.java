@@ -13,7 +13,7 @@ public class RemoveListController {
     public Label label;
     @FXML
     public ImageView imageView;
-    static Main main;
+    static MainController mainController;
     static String listName;
 
     @FXML
@@ -24,7 +24,7 @@ public class RemoveListController {
 
     public void delete(MouseEvent mouseEvent) {
         ConnectionWithDB.removeList(listName);
-        main.updateInterface();
+        mainController.updateInterface();
         Stage stage = (Stage) label.getScene().getWindow();
         stage.close();
     }
