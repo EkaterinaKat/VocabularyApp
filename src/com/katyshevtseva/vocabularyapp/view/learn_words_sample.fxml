@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?scenebuilder-stylesheet /css/style?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?scenebuilder-stylesheet /css/style?>
 <?import java.net.URL?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
@@ -16,13 +16,13 @@
     </stylesheets>
 
     <Pane prefHeight="60"/>
-    <Label text=" " fx:id="wordLabel" />
+    <Label text=" " fx:id="wordLabel"/>
     <Pane prefHeight="15"/>
-    <Button text="Get help" onMouseClicked="#getHelp" fx:id="helpButton" />
-    <Label fx:id="helpLabel" maxWidth="380" wrapText="true" prefHeight="70" alignment="CENTER" />
+    <Button text="Get help" onMouseClicked="#getHelp" fx:id="helpButton"/>
+    <Label fx:id="helpLabel" maxWidth="380" wrapText="true" prefHeight="70" alignment="CENTER"/>
     <Button text="Show translation" onMouseClicked="#showTranslation" fx:id="showTranslationButton"/>
     <Pane prefHeight="7"/>
-    <Label text=" " fx:id="translationLabel" />
+    <Label text=" " fx:id="translationLabel"/>
     <Pane prefHeight="7"/>
 
     <HBox alignment="CENTER">
@@ -40,7 +40,7 @@
 
     <Pane prefHeight="20"/>
 
-    <Label fx:id="levelLabel" />
-    <Label fx:id="countLabel" />
+    <Label fx:id="levelLabel"/>
+    <Label fx:id="countLabel"/>
 
 </VBox>

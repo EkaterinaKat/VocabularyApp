@@ -1,6 +1,6 @@
+<?scenebuilder-stylesheet /css/style?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
-<?scenebuilder-stylesheet /css/style?>
 <?import java.net.URL?>
 <BorderPane fx:controller="com.katyshevtseva.vocabularyapp.controller.WordListController" xmlns:fx="http://javafx.com/fxml">
 

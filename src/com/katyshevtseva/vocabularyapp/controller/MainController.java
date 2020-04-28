@@ -19,13 +19,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class MainController extends Application {
-    static List<String> catalogue;
+    private static List<String> catalogue;
 
     @FXML
     public ScrollPane scrollPane;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         DataBase.getInstance().connect();
         WindowCreator.getInstance().createMainWindow();
     }
@@ -50,7 +50,6 @@ public class MainController extends Application {
         try {
             catalogue = DataBase.getInstance().getCatalogue();
         } catch (SQLException e) {
-            System.out.println("Вот беда, каталога нет, но без паники, сейчас мы его сделаем");
             DataBase.getInstance().createCatalogue();
             DataBase.getInstance().addList("First word list");
             DataBase.getInstance().addWord("First word list", "cat", "кот");
@@ -58,8 +57,8 @@ public class MainController extends Application {
             DataBase.getInstance().addWord("First word list", "bird", "птица");
             try {
                 catalogue = DataBase.getInstance().getCatalogue();
-            } catch (SQLException ex) {
-                System.out.println("блин, ну вот не создался каталог. на этом мои полнмочия все");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
             }
         }
 
@@ -103,24 +102,24 @@ public class MainController extends Application {
         }
     }
 
-    public void addWordList(MouseEvent mouseEvent) {
+    public void addWordList() {
         AddListController.mainController = this;
         WindowCreator.getInstance().createModalWindow(
                 "add_list_sample.fxml", "Add list", 410, 150, false);
     }
 
-    public void learnWords(MouseEvent mouseEvent) {
+    public void learnWords() {
         ChooseListsController.catalogue = catalogue;
         WindowCreator.getInstance().createModalWindow(
                 "choose_lists_sample.fxml", "Choose lists to learn", 450, 450, false);
     }
 
-    public void searchWord(MouseEvent mouseEvent) {
+    public void searchWord() {
         WindowCreator.getInstance().createModalWindow(
                 "word_search_sample.fxml", "Word Search", 820, 500, true);
     }
 
-    public void about(MouseEvent mouseEvent) {
+    public void about() {
         WindowCreator.getInstance().createModalWindow(
                 "about_sample.fxml", "About", 570, 300, false);
     }

@@ -12,29 +12,4 @@ class Constants {
 
     static final int MAIN_WINDOW_HEIGHT = 500;
     static final int MAIN_WINDOW_WIDTH = 550;
-
-    static final String c = "";
-    static final String z = "";
-    static final String q = "";
-    static final String l = "";
-
-//    static final String d = "";
-//    static final String b = "";
-//    static final String c = "";
-//    static final String z = "";
-//    static final String q = "";
-//    static final String l = "";
-//    static final String d = "";
-//    static final String b = "";
-//    static final String c = "";
-//    static final String z = "";
-//    static final String q = "";
-//    static final String l = "";
-//    static final String d = "";
-//    static final String b = "";
-//    static final String c = "";
-//    static final String z = "";
-//    static final String q = "";
-//    static final String l = "";
-
 }

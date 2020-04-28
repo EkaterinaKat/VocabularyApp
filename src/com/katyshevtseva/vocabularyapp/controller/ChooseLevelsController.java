@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -17,7 +16,7 @@ import java.util.Set;
 
 public class ChooseLevelsController {
     static List<Pair> list;
-    List<CheckBox> checkBoxes = new ArrayList<>();
+    private List<CheckBox> checkBoxes = new ArrayList<>();
 
     @FXML
     public Button doneBtn;
@@ -40,12 +39,12 @@ public class ChooseLevelsController {
         for (Integer i : existingLevels) {
             CheckBox cb = new CheckBox("level: " + i);
             checkBoxes.add(cb);
-            gridPane.add(cb,0,rowCount);
+            gridPane.add(cb, 0, rowCount);
             rowCount++;
         }
     }
 
-    public void done(MouseEvent mouseEvent) {
+    public void done() {
         //собираем сет выбранных уровней
         Set<Integer> chosenLevels = new HashSet<>();
         for (CheckBox cb : checkBoxes) {

@@ -5,7 +5,6 @@ import com.katyshevtseva.vocabularyapp.model.Pair;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class AddHelpController {
@@ -20,7 +19,7 @@ public class AddHelpController {
         ta.setText(pair.getHelp());
     }
 
-    public void add(MouseEvent mouseEvent) {
+    public void add() {
         if((ta.getText()==null)||(ta.getText().trim().equals(""))){
             MessageController.message = "Text field is empty";
             WindowCreator.getInstance().createModalWindow(

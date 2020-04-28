@@ -3,12 +3,8 @@ package com.katyshevtseva.vocabularyapp.controller;
 import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Translator;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 public class AddWordController {
     static WordListController wordListController;
@@ -19,32 +15,23 @@ public class AddWordController {
     public TextField translationTF;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         //устанавливаем слушателей которые будут преводить текст на нужный язык
-        wordTF.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!Translator.isStingInEnglish(newValue)){
-                    wordTF.setText(Translator.translateToEng(newValue));
-                }
-            }
+        wordTF.textProperty().addListener((observable, oldValue, newValue) -> {
+            wordTF.setText(Translator.translateToEng(newValue));
         });
 
-        translationTF.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!Translator.isStingInRussian(newValue)){
-                    translationTF.setText(Translator.translateToRus(newValue));
-                }
-            }
+        translationTF.textProperty().addListener((observable, oldValue, newValue) -> {
+            translationTF.setText(Translator.translateToRus(newValue));
+
         });
     }
 
-    public void addButtonPressed(MouseEvent mouseEvent) {
+    public void addButtonPressed() {
         addWord();
     }
 
-    public void enterOnTextField(ActionEvent actionEvent) {
+    public void enterOnTextField() {
         addWord();
     }
 
@@ -62,7 +49,7 @@ public class AddWordController {
         }
     }
 
-    public void nextField(ActionEvent actionEvent) {
+    public void nextField() {
         translationTF.requestFocus();
     }
 

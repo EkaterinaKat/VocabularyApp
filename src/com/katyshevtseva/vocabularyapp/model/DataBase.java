@@ -38,7 +38,7 @@ public class DataBase {
         }
     }
 
-    public String getTableNameByListName(String listName) {
+    private String getTableNameByListName(String listName) {
         String tableName = "";
         String sql1 = String.format("SELECT tableName FROM catalogue\n" +
                 "WHERE listName = \"%s\"", listName);
@@ -55,7 +55,7 @@ public class DataBase {
     public List<String> getCatalogue() throws SQLException {
         List<String> catalogue = new ArrayList<>();
         String sql = "SELECT * FROM catalogue";
-        ResultSet rs = null;
+        ResultSet rs;
         rs = stmt.executeQuery(sql);
         while (rs.next()) { //листаем строчки таблички
             String s = rs.getString(1);
@@ -68,7 +68,7 @@ public class DataBase {
         String tableName = getTableNameByListName(listName);
         List<Pair> listOfPairs = new ArrayList<>();
         String sql2 = String.format("SELECT word, translation, level, help FROM %s", tableName);
-        ResultSet rs = null;
+        ResultSet rs;
         try {
             rs = stmt.executeQuery(sql2);
             while (rs.next()) { //листаем строчки таблички
@@ -108,7 +108,7 @@ public class DataBase {
         //достаем из каталога автосгенерированный айди
         String sql2 = String.format("SELECT id FROM catalogue\n" +
                 "WHERE listName = \"%s\"", listName);
-        ResultSet rs = null;
+        ResultSet rs;
         int id = 0;
         try {
             rs = stmt.executeQuery(sql2);
@@ -238,11 +238,11 @@ public class DataBase {
     }
 
     public void createCatalogue() {
-        String sql = String.format("CREATE TABLE catalogue (\n" +
+        String sql = "CREATE TABLE catalogue (\n" +
                 "listName STRING,\n" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 "tableName STRING\n" +
-                ");\n");
+                ");\n";
         try {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {

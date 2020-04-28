@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ChooseListsController {
     static List<String> catalogue;
-    List<CheckBox> checkBoxes = new ArrayList<>();
+    private List<CheckBox> checkBoxes = new ArrayList<>();
 
     @FXML
     public ScrollPane scrollPane;

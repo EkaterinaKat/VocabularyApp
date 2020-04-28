@@ -2,11 +2,11 @@
 
 <?scenebuilder-stylesheet /css/style?>
 
-<?import javafx.scene.layout.HBox?>
-<?import java.net.URL?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import java.net.URL?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.katyshevtseva.vocabularyapp.controller.AboutController"
@@ -17,7 +17,7 @@
         <URL value="@/css/style.css"/>
     </stylesheets>
 
-    <ImageView fx:id="imageView" />
+    <ImageView fx:id="imageView"/>
     <Pane prefWidth="20"/>
     <Label fx:id="label" maxWidth="400" wrapText="true"/>
 

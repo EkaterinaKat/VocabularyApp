@@ -5,8 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
-
 public class AboutController {
     @FXML
     public ImageView imageView;
@@ -14,8 +12,8 @@ public class AboutController {
     public Label label;
 
     @FXML
-    public void initialize(){
-        Image image = new Image ("/res/logo.png");
+    public void initialize() {
+        Image image = new Image("/res/logo.png");
         imageView.setImage(image);
         imageView.setFitHeight(130);
         imageView.setFitWidth(130);

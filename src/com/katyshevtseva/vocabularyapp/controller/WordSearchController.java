@@ -2,8 +2,6 @@ package com.katyshevtseva.vocabularyapp.controller;
 
 import com.katyshevtseva.vocabularyapp.model.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Pair;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,16 +28,11 @@ public class WordSearchController {
 
 
     @FXML
-    public void initialize(){
-        tf.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                fillTable(tf.getText());
-            }
-        });
+    public void initialize() {
+        tf.textProperty().addListener((observable, oldValue, newValue) -> fillTable(tf.getText()));
     }
 
-    private void fillTable(String inputString){
+    private void fillTable(String inputString) {
         List<Pair> list = DataBase.getInstance().getPairsForSearch(inputString);
         ObservableList<Pair> observableList = FXCollections.observableArrayList();
         observableList.addAll(list);

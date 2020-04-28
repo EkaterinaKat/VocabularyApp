@@ -33,11 +33,7 @@ public class Pair {
         return level;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-    public String getListName() {
+    String getListName() {
         return listName;
     }
 
@@ -45,7 +41,4 @@ public class Pair {
         return help;
     }
 
-    public void setHelp(String help) {
-        this.help = help;
-    }
 }

@@ -14,7 +14,7 @@ public class AddListController {
     TextField nameField;
 
 
-    public void ok() {
+    private void ok() {
 
         if (!nameField.getText().trim().equals("")) {
             DataBase.getInstance().addList(nameField.getText());
@@ -29,11 +29,11 @@ public class AddListController {
         }
     }
 
-    public void ok1(MouseEvent mouseEvent) {
+    public void ok1() {
         ok();
     }
 
-    public void ok2(ActionEvent actionEvent) {
+    public void ok2() {
         ok();
     }
 }

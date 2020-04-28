@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.util.Collections;
@@ -44,60 +43,60 @@ public class LearnWordsController {
         nextWord();
 
         //добавляем галочку и крестик на кнопку
-        Image image = new Image ("/res/tick.png");
+        Image image = new Image("/res/tick.png");
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(25);
         imageView.setFitWidth(25);
         okBtn.graphicProperty().setValue(imageView);
 
-        Image image1 = new Image ("/res/red_cross.png");
+        Image image1 = new Image("/res/red_cross.png");
         ImageView imageView1 = new ImageView(image1);
         imageView1.setFitHeight(25);
         imageView1.setFitWidth(25);
         notOkBtn.graphicProperty().setValue(imageView1);
     }
 
-    public void getHelp(MouseEvent mouseEvent) {
+    public void getHelp() {
         helpLabel.setText(list.get(count).getHelp());
         helpButton.setDisable(true);
     }
 
-    public void showTranslation(MouseEvent mouseEvent) {
+    public void showTranslation() {
         translationLabel.setText(list.get(count).getTranslation());
         showTranslationButton.setDisable(true);
         okBtn.setDisable(false);
         notOkBtn.setDisable(false);
     }
 
-    public void okBtnPressed(MouseEvent mouseEvent) {
+    public void okBtnPressed() {
         int l = list.get(count).getLevel();
-        DataBase.getInstance().changeLevel(list.get(count), l+1);
+        DataBase.getInstance().changeLevel(list.get(count), l + 1);
         nextWord();
     }
 
-    public void notOkBtnPressed(MouseEvent mouseEvent) {
+    public void notOkBtnPressed() {
         int l = list.get(count).getLevel();
-        if (l!=0){
-            DataBase.getInstance().changeLevel(list.get(count), l-1);
+        if (l != 0) {
+            DataBase.getInstance().changeLevel(list.get(count), l - 1);
         }
         nextWord();
     }
 
-    private void nextWord(){
+    private void nextWord() {
         count++;
 
         //проверяем не закончились ли слова для изучения
-        if(count==list.size()){
+        if (count == list.size()) {
             MessageController.warningIconNeeded = false;
             MessageController.message = "Learning is completed!";
             WindowCreator.getInstance().createModalWindow(
                     "message_sample.fxml", "Message", 350, 200, false);
             Stage stage = (Stage) wordLabel.getScene().getWindow();
             stage.close();
-        }else {
+        } else {
             //настраиваем лэйблы
             wordLabel.setText(list.get(count).getWord());
-            String s = String.format("%s/%s",count+1,list.size());
+            String s = String.format("%s/%s", count + 1, list.size());
             countLabel.setText(s);
             levelLabel.setText("Word level: " + list.get(count).getLevel());
             helpLabel.setText("");
@@ -105,9 +104,9 @@ public class LearnWordsController {
 
             //настраиваем кнопки
             showTranslationButton.setDisable(false);
-            if ((list.get(count).getHelp()==null)||(list.get(count).getLevel()>3)){
+            if ((list.get(count).getHelp() == null) || (list.get(count).getLevel() > 3)) {
                 helpButton.setDisable(true);
-            }else {
+            } else {
                 helpButton.setDisable(false);
             }
             okBtn.setDisable(true);
