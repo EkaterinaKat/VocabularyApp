@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import static com.katyshevtseva.vocabularyapp.utils.Constants.*;
+
 public class AddListController {
     static MainController mainController;
     @FXML
@@ -21,9 +23,9 @@ public class AddListController {
             Stage stage = (Stage) nameField.getScene().getWindow();
             stage.close();
         } else {
-            MessageController.message = "Text field is empty";
-            WindowCreator.getInstance().createModalWindow(
-                    "message_sample.fxml", "Warning", 350, 200, false);
+            MessageController.message = TEXT_FIELD_IS_EMPTY_WARNING;
+            WindowCreator.getInstance().createModalWindow("message_sample.fxml",
+                    WARNING_WINDOW_TITLE, WARNING_WINDOW_WIDTH, WARNING_WINDOW_HEIGHT, false);
         }
     }
 

@@ -1,12 +1,15 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.utils.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Entry;
+import com.katyshevtseva.vocabularyapp.utils.DataBase;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
+import static com.katyshevtseva.vocabularyapp.utils.Constants.IMAGES_PATH;
+import static com.katyshevtseva.vocabularyapp.utils.Constants.QUESTION_IMAGE_NAME;
 
 public class DeleteWordController {
     static WordListController wordListController;
@@ -18,7 +21,7 @@ public class DeleteWordController {
 
     @FXML
     public void initialize() {
-        Image image = new Image("/res/question.png");
+        Image image = new Image(IMAGES_PATH + QUESTION_IMAGE_NAME);
         imageView.setImage(image);
     }
 

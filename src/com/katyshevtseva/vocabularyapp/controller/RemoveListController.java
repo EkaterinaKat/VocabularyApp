@@ -7,6 +7,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import static com.katyshevtseva.vocabularyapp.utils.Constants.IMAGES_PATH;
+import static com.katyshevtseva.vocabularyapp.utils.Constants.QUESTION_IMAGE_NAME;
+
 public class RemoveListController {
     @FXML
     public Label label;
@@ -17,7 +20,7 @@ public class RemoveListController {
 
     @FXML
     public void initialize() {
-        Image image = new Image("/res/question.png");
+        Image image = new Image(IMAGES_PATH + QUESTION_IMAGE_NAME);
         imageView.setImage(image);
     }
 

@@ -1,7 +1,7 @@
 package com.katyshevtseva.vocabularyapp.controller;
 
-import com.katyshevtseva.vocabularyapp.utils.DataBase;
 import com.katyshevtseva.vocabularyapp.model.Entry;
+import com.katyshevtseva.vocabularyapp.utils.DataBase;
 import com.katyshevtseva.vocabularyapp.utils.WindowCreator;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -74,7 +74,7 @@ public class WordListController {
     }
 
     public void pressAddWordButton() {
-        AddWordController.wordListController = this;
+        WordInputController.wordListController = this;
         WindowCreator.getInstance().createModalWindow(
                 "add_word_sample.fxml", "Add word", 350, 200, false);
     }

@@ -10,6 +10,7 @@ public class ClickOnWordController {
     static Entry entry;
     public Button btn;
 
+    //todo константы
     public void editWord() {
         EditWordController.wordListController = wordListController;
         EditWordController.entry = entry;

@@ -17,7 +17,7 @@
     <top>
         <HBox>
 
-            <Button text="Add word list" onMouseClicked="#addWordList" styleClass="topBtn">
+            <Button text="Add word list" onMouseClicked="#createWordList" styleClass="topBtn">
                 <HBox.margin>
                     <Insets bottom="25" left="40" right="10" top="20"/>
                 </HBox.margin>

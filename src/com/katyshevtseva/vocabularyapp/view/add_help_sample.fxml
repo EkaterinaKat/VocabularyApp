@@ -14,7 +14,7 @@
         <URL value="@/css/style.css"/>
     </stylesheets>
 
-    <TextArea fx:id="ta" maxWidth="350" wrapText="true" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+    <TextArea fx:id="textArea" maxWidth="350" wrapText="true" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
               AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="30"/>
     <Button text="Add" onMouseClicked="#add" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"/>
 

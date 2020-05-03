@@ -32,7 +32,8 @@ public class WindowCreator {
     }
 
     public void createMainWindow() {
-        Stage stage = getStage(MAIN_SAMPLE_NAME, MAIN_WINDOW_TITLE, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT, false);
+        Stage stage = getStage("main_sample.fxml", MAIN_WINDOW_TITLE,
+                MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT, false);
         stage.show();
     }
 

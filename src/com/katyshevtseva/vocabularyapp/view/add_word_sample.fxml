@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.katyshevtseva.vocabularyapp.controller.AddWordController">
+            fx:controller="com.katyshevtseva.vocabularyapp.controller.WordInputController">
 
     <stylesheets>
         <URL value="@/css/style.css"/>
@@ -19,10 +19,10 @@
     <center>
         <GridPane alignment="CENTER">
             <Label text="Word: " GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="wordTF" GridPane.rowIndex="0" GridPane.columnIndex="2" onAction="#nextField"/>
+            <TextField fx:id="wordTextField" GridPane.rowIndex="0" GridPane.columnIndex="2" onAction="#nextField"/>
             <Pane GridPane.columnIndex="1" GridPane.rowIndex="1" prefHeight="10" prefWidth="10"/>
             <Label text="Translation: " GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="translationTF" onAction="#enterOnTextField" GridPane.rowIndex="2"
+            <TextField fx:id="translationTextField" onAction="#enterOnTextField" GridPane.rowIndex="2"
                        GridPane.columnIndex="2"/>
         </GridPane>
     </center>

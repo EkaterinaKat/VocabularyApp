@@ -18,14 +18,15 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.List;
 
+import static com.katyshevtseva.vocabularyapp.utils.Constants.*;
+
 public class MainController extends Application {
     private static List<String> catalogue;
-
     @FXML
     public ScrollPane scrollPane;
 
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
         DataBase.getInstance().connect();
         WindowCreator.getInstance().createMainWindow();
     }
@@ -46,81 +47,96 @@ public class MainController extends Application {
     }
 
     void updateInterface() {
-        //получаем каталог и обрабатываем ситуацию если вдруг каталога не существует
+        /* Получаем каталог из БД и обрабатываем ситуацию, когда он еще не создан */
         try {
             catalogue = DataBase.getInstance().getCatalogue();
         } catch (SQLException e) {
-            DataBase.getInstance().createCatalogue();
-            DataBase.getInstance().addList("First word list");
-            DataBase.getInstance().addWord("First word list", "cat", "кот");
-            DataBase.getInstance().addWord("First word list", "dog", "пес");
-            DataBase.getInstance().addWord("First word list", "bird", "птица");
-            try {
-                catalogue = DataBase.getInstance().getCatalogue();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
+            createExampleWordList();
         }
 
-        //нстраиваем гридпэйн в который будем засовывать список листов
-        GridPane gridPane = new GridPane();
-        gridPane.setVgap(15);
-        scrollPane.setContent(gridPane);
-        int rowIndex = 0;
-        ColumnConstraints columnConstraints = new ColumnConstraints();
-        columnConstraints.setPrefWidth(440);
-        gridPane.getColumnConstraints().add(columnConstraints);
+        /* Создаем и настраиваем таблицу, которая будет содержать имена списков слов */
+        GridPane listsTable = createAndTuneListsTable();
 
-        //заполняем гридпэйн
-        for (String listName : catalogue) {
-            //подготавливаем имиджвью с крестиком для кнопки удаления
-            Image image = new Image("/res/red_cross.png");
-            ImageView imageViewWithRedCross = new ImageView(image);
-            imageViewWithRedCross.setFitHeight(15);
-            imageViewWithRedCross.setFitWidth(15);
-
-            //создаем, инициализируем и добавляем на экран лэйбл и кнопку удаления для каждого листа
-            Label label = new Label(listName);
-            Button deleteBtn = new Button("", imageViewWithRedCross);
+        /* Заполняем таблицу */
+        for (int listIndex = 0; listIndex < catalogue.size(); listIndex++) {
+            Label label = new Label(catalogue.get(listIndex));
+            Button deleteBtn = new Button("", getListDeletionIcon());
             deleteBtn.setTooltip(new Tooltip("delete list"));
+            int finalListIndex = listIndex;
             label.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-                WordListController.nameOfList = listName;
-                WindowCreator.getInstance().createModalWindow(
-                        "word_list_sample.fxml", listName, 1330, 900, true);
+                openWordListWindow(finalListIndex);
             });
             deleteBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-                RemoveListController.mainController = this;
-                RemoveListController.listName = listName;
-                WindowCreator.getInstance().createModalWindow(
-                        "remove_list_sample.fxml", "Delete word list", 450, 200, false);
+                openListDeletionWindow(finalListIndex);
             });
-
-            gridPane.add(label, 0, rowIndex);
-            gridPane.add(deleteBtn, 1, rowIndex);
-            rowIndex++;
-
+            listsTable.add(label, 0, listIndex);
+            listsTable.add(deleteBtn, 1, listIndex);
         }
     }
 
-    public void addWordList() {
+    private void createExampleWordList() {
+        DataBase.getInstance().createCatalogue();
+        DataBase.getInstance().addList("Example word list");
+        DataBase.getInstance().addWord("Example word list", "cat", "кот");
+        DataBase.getInstance().addWord("Example word list", "dog", "пес");
+        DataBase.getInstance().addWord("Example word list", "bird", "птица");
+        try {
+            catalogue = DataBase.getInstance().getCatalogue();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    private GridPane createAndTuneListsTable() {
+        GridPane listsTable = new GridPane();
+        listsTable.setVgap(LISTS_TABLE_V_GAP);
+        scrollPane.setContent(listsTable);
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setPrefWidth(LISTS_TABLE_WIDTH);
+        listsTable.getColumnConstraints().add(columnConstraints);
+        return listsTable;
+    }
+
+    private ImageView getListDeletionIcon() {
+        Image image = new Image(IMAGES_PATH + LIST_DELETION_IMAGE_NAME);
+        ImageView imageViewWithRedCross = new ImageView(image);
+        imageViewWithRedCross.setFitHeight(LIST_DELETION_ICON_SIZE);
+        imageViewWithRedCross.setFitWidth(LIST_DELETION_ICON_SIZE);
+        return imageViewWithRedCross;
+    }
+
+    private void openListDeletionWindow(int listIndex) {
+        RemoveListController.mainController = this;
+        RemoveListController.listName = catalogue.get(listIndex);
+        WindowCreator.getInstance().createModalWindow("remove_list_sample.fxml",
+                LIST_DELETION_WINDOW_TITLE, LIST_DELETION_WINDOW_WIDTH, LIST_DELETION_WINDOW_HEIGHT, false);
+    }
+
+    private void openWordListWindow(int listIndex) {
+        WordListController.nameOfList = catalogue.get(listIndex);
+        WindowCreator.getInstance().createModalWindow("word_list_sample.fxml",
+                catalogue.get(listIndex), WORD_LIST_WINDOW_WIDTH, WORD_LIST_WINDOW_HEIGHT, true);
+    }
+
+    public void createWordList() {
         AddListController.mainController = this;
-        WindowCreator.getInstance().createModalWindow(
-                "add_list_sample.fxml", "Add list", 410, 150, false);
+        WindowCreator.getInstance().createModalWindow("add_list_sample.fxml",
+                LIST_CREATION_WINDOW_TITLE, LIST_CREATION_WINDOW_WIDTH, LIST_CREATION_WINDOW_HEIGHT, false);
     }
 
     public void learnWords() {
         ChooseListsController.catalogue = catalogue;
-        WindowCreator.getInstance().createModalWindow(
-                "choose_lists_sample.fxml", "Choose lists to learn", 450, 450, false);
+        WindowCreator.getInstance().createModalWindow("lists_choice_sample.fxml",
+                LIST_CHOICE_WINDOW_TITLE, LIST_CHOICE_WINDOW_WIDTH, LIST_CHOICE_WINDOW_HEIGHT, false);
     }
 
     public void searchWord() {
-        WindowCreator.getInstance().createModalWindow(
-                "word_search_sample.fxml", "Word Search", 820, 500, true);
+        WindowCreator.getInstance().createModalWindow("word_search_sample.fxml",
+                WORD_SEARCH_WINDOW_TITLE, WORD_SEARCH_WINDOW_WIDTH, WORD_SEARCH_WINDOW_HEIGHT, true);
     }
 
     public void about() {
         WindowCreator.getInstance().createModalWindow(
-                "about_sample.fxml", "About", 570, 300, false);
+                "about_sample.fxml", ABOUT_WINDOW_TITLE, ABOUT_WINDOW_WIDTH, ABOUT_WINDOW_HEIGHT, false);
     }
 }

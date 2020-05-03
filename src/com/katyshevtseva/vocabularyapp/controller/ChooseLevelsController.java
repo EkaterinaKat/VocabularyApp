@@ -14,10 +14,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.katyshevtseva.vocabularyapp.utils.Constants.*;
+
 public class ChooseLevelsController {
     static List<Entry> list;
     private List<CheckBox> checkBoxes = new ArrayList<>();
-
     @FXML
     public Button doneBtn;
     @FXML
@@ -65,7 +66,8 @@ public class ChooseLevelsController {
         //передаем конечный лист в лернвордс контроллер и запускаем окно для изучения слов
         LearnWordsController.list = finalList;
         WindowCreator.getInstance().createModalWindow(
-                "learn_words_sample.fxml", "Learn words", 550, 500, false);
+                "learn_words_sample.fxml", WORDS_LEARNING_WINDOW_TITLE,
+                WORDS_LEARNING_WINDOW_WIDTH, WORDS_LEARNING_WINDOW_HEIGHT, false);
 
         //закрываем окно выбора уровней
         Stage stage = (Stage) scrollPane.getScene().getWindow();
